@@ -13,7 +13,7 @@
 
 <body>
     <nav class="navbar navbar-expand-sm navbar-light " style="background-color: rgb(9, 165, 170)">
-        <a class="navbar-brand" href="/">Result Notify</a>
+        <a class="navbar-brand" href="/"><strong>Result</strong> Notify</a>
 
     </nav>
 
@@ -26,14 +26,16 @@
                 <div class="row pt-5">
 
                     <form class="d-flex flex-column justify-content-between" action="/" method="POST">
-                        <div class="form-group">
+                        <div class=" form-group">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" class="form-control" name="email" id="email" placeholder="Enter email"
-                                required autocomplete="email">
+                                required autocomplete="email" onblur="validateName()">
+                            <small class="error" style="color:red;display:none;">Email already submitted</small>
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                                 else.</small>
+
                         </div>
-                        <select name="semester" class="form-control">
+                        <select name="semester" onclick="validateName()" class="form-control">
                             <option disabled>Choose semester</option>
                             <option>1</option>
                             <option>2</option>
@@ -44,7 +46,7 @@
                             <option>7</option>
                             <option>8</option>
                         </select>
-                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                        <button type="submit" class="btn btn-primary mt-3 sub">Submit</button>
                     </form>
                 </div>
             </div>
@@ -52,7 +54,35 @@
         </div>
     </div>
 
+    <script>
+        function validateName() {
+            String.prototype.replaceAll = function (search, replacement) {
+                var target = this;
+                return target.replace(new RegExp(search, 'g'), replacement);
+            };
+            var ipfield = document.querySelector("#email")
+            var err = document.querySelector(".error")
+            var sub = document.querySelector(".sub")
+            var f = '{{ mail }}'
+            f = f.replace("[", '')
+            f = f.replace("]", '')
+            f = f.replaceAll('&#39;', '')
+            f = f.replaceAll(' ', '')
+            var list = f.split(',')
+            err.style.display = "none";
+            sub.disabled = false
 
+            list.map((l) => {
+                if (l == ipfield.value) {
+                    err.style.display = "block";
+                    sub.disabled = true
+                }
+
+
+            })
+
+        }
+    </script>
 </body>
 
 </html>

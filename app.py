@@ -27,10 +27,12 @@ def home():
         db.session.add(mail)
         db.session.commit()
         name = user.split('@')
-
         return redirect(url_for('success', name=name[0]))
+
     else:
-        return render_template("form.html")
+        students = list(Mail.query.all())
+        student_mail = [student.email for student in students]
+        return render_template("form.html", mail=student_mail)
 
 
 @app.route('/success/?name=<name>')
