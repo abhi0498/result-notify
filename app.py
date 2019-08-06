@@ -17,18 +17,8 @@ class Mail(db.Model):
         return '<Mail %r>' % name[0]
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def home():
-    return render_template("index.html")
-
-
-@app.route('/success/?name=<name>')
-def success(name):
-    return render_template("success.html", name=name)
-
-
-@app.route("/mail", methods=["POST", "GET"])
-def mail():
     if request.method == 'POST':
 
         user = request.form['email']
@@ -41,6 +31,27 @@ def mail():
         return redirect(url_for('success', name=name[0]))
     else:
         return render_template("form.html")
+
+
+@app.route('/success/?name=<name>')
+def success(name):
+    return render_template("success.html", name=name)
+
+
+# @app.route("/mail", methods=["POST", "GET"])
+# def mail():
+#     if request.method == 'POST':
+
+#         user = request.form['email']
+#         sem = request.form['semester']
+#         mail = Mail(email=user, sem=sem)
+#         db.session.add(mail)
+#         db.session.commit()
+#         name = user.split('@')
+
+#         return redirect(url_for('success', name=name[0]))
+#     else:
+#         return render_template("form.html")
 
 
 if __name__ == "__main__":
