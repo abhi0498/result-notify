@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light " style="background-color: rgb(9, 165, 170)">
+        <a class="navbar-brand" href="#">Result Notify</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
+            <ul class="navbar-nav d-flex justify-content-around w-75">
+                <li class="nav-item active ">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/mail">Subscribe to mail</a>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="mt-5 container d-flex " style="height: 50vh">
+        <div class="mt-5 row  conatiner d-flex justify-content-center ">
+            <div class="col shadow d-flex flex-column justify-content-start align-items-center">
+                <div class="row">
+                    <p class="px-5 pt-3">Enter your e-mail id below to recieve an email when your results arrive</p>
+                </div>
+                <div class="row pt-5">
+
+                    <form class="d-flex flex-column justify-content-between" action="http://127.0.0.1:5000/mail"
+                        method="POST">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Enter email"
+                                required autocomplete="email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.</small>
+                        </div>
+                        <select name="semester" class="form-control">
+                            <option disabled>Choose semester</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
